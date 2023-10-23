@@ -8,6 +8,8 @@ The dataset was built from the image below using image and ocr processing
 
 More information can be found on this [post]() **TODO**
 
+Try on **TODO**
+
 ## Features
 
 - generate a lipstick name using zero-shot, few-shot and many-shot prompt approaches based on the select color using GPT-3.5;
