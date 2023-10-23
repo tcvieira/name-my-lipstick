@@ -1,0 +1,12 @@
+streamlit==1.27.0
+openai==0.28.0
+langchain==0.0.300
+pillow==9.1.1
+streamlit-extras==0.3.2
+colorspacious==1.1.2
+numpy==1.26.0
+colorama==0.4.6
+pytesseract==0.3.10
+opencv-python==4.5.5.64
+easyocr==1.6.2
+streamlit-feedback==0.1.2
