@@ -2,7 +2,7 @@
 
 This my 1st project for the [KaggleX 2023 cohort 3](https://www.kagglex.org/) mentorship program.
 
-The goal is to style transfer lipstick naming of a famous cosmetic brand based on the selected color usin LLMs.
+The goal is to style transfer lipstick naming of a famous cosmetic brand based on the selected color using LLMs.
 
 The dataset was built from the image below using image and ocr processing
 
