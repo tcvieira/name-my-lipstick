@@ -8,7 +8,9 @@ from PIL import Image
 from colors import topk_similar_colors, rgb2hex, hex2rgb, color_cells, NAMES_ORIGINAL
 from lipstick import generate_name
 
-if st.secrets.has_key('OPENAI_API_KEY'): st.session_state['openai_api_key'] = st.secrets['OPENAI_API_KEY']
+st.session_state['openai_api_key'] = 'sk-'
+if 'OPENAI_API_KEY' in st.secrets:
+    st.session_state['openai_api_key'] = st.secrets['OPENAI_API_KEY']
 
 color_image = Image.open('img/colors.png')
 
