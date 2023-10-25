@@ -9,8 +9,6 @@ from colors import topk_similar_colors, rgb2hex, hex2rgb, color_cells, NAMES_ORI
 from lipstick import generate_name
 
 st.session_state['openai_api_key'] = 'sk-'
-if 'OPENAI_API_KEY' in st.secrets:
-    st.session_state['openai_api_key'] = st.secrets['OPENAI_API_KEY']
 
 color_image = Image.open('img/colors.png')
 
