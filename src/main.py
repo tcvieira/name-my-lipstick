@@ -12,7 +12,7 @@ st.session_state['openai_api_key'] = ''
 if 'OPENAI_API_KEY' in st.secrets:
     st.session_state['openai_api_key'] = st.secrets['OPENAI_API_KEY']
 
-color_image = Image.open('img/colors.png')
+#color_image = Image.open('img/colors.png')
 
 def main():
 
@@ -56,12 +56,12 @@ def main():
     #badge(type='streamlit', url='https://plost.streamlitapp.com')
     badge(type='github', name='tcvieira/name-my-lipstick')
 
-    with st.expander('show colors from 2018 catalog'):
-        st.image(color_image, caption='source: https://pinterest.com/pin/437623288787889666/')
+    # with st.expander('show colors from 2018 catalog'):
+    #     st.image(color_image, caption='source: https://pinterest.com/pin/437623288787889666/')
 
-    with st.expander('show generated cleaned dataframe'):
-        df = pd.read_csv('../dataset/data_cleaned.csv')
-        st.write(df.style.applymap(color_cells, subset=["color"]))
+    # with st.expander('show generated cleaned dataframe'):
+    #     df = pd.read_csv('../dataset/data_cleaned.csv')
+    #     st.write(df.style.applymap(color_cells, subset=["color"]))
 
     st.markdown('---')
 
