@@ -11,8 +11,9 @@ from io import BytesIO
 from colors import hex2rgb, NAMES_ORIGINAL
 from prompts import ZERO_SHOT_PROMPT_TEMPLATE, FEW_SHOT_PROMPT_TEMPLATE, MANY_SHOT_PROMPT_TEMPLATE, IMAGE_AD_PROMPT
 
-st.session_state['openai_api_key'] = st.secrets['OPENAI_API_KEY']
-
+st.session_state['openai_api_key'] = ''
+if 'OPENAI_API_KEY' in st.secrets:
+    st.session_state['openai_api_key'] = st.secrets['OPENAI_API_KEY']
 
 PROMPTS = {'zero-shot': ZERO_SHOT_PROMPT_TEMPLATE, 'few-shot': FEW_SHOT_PROMPT_TEMPLATE, 'many-shot': MANY_SHOT_PROMPT_TEMPLATE}
 
