@@ -40,7 +40,7 @@ def generate_ad_image(name: str, color_rgb: str):
 
         status.update(label='Generating image...', expanded=True)
         chain = LLMChain(llm=llm, prompt=prompt)
-        image_url = DallEAPIWrapper().run(chain.run(description_prompt))
+        image_url = DallEAPIWrapper().run(chain.run(description_prompt), openai_api_key=st.session_state['openai_api_key'])
         response = requests.get(image_url)
         status.update(label=f'{name}', state='complete', expanded=True)
         img = Image.open(BytesIO(response.content))
