@@ -184,16 +184,21 @@ do not repeat any name from the examples
 extract the name inside the <name> tag as output
 """
 
-IMAGE_AD_PROMPT = """
+IMAGE_DESCRIPTION_PROMPT = """
 Your task is to create a prompt for a generative ai to create an image for a lipstick ad with no text using the Mac Cosmetic aesthetic based on the lipstick RGB color and name which are {color} and {name}
 
 The generated prompt should follow the below rules to help you build this prompt:
 
 the image should not contain any writing on it.
-the image backgound color needs to be on contrast and tone with the rgb color {color}
+the image background color needs to be on contrast and tone with the rgb color {color}
 the look and feel of the image should match with the lipstick name {name}
 the image should have a "Flat lighting" mood
 the prompt should define a landscape, style, color and subject based on the RGB color and lipstick name provided
 the prompt should use the words Photorealistic, Product photography, Cosmetic Product
 The prompt should have a maximum of 300 characters
+"""
+
+IMAGE_AD_PROMPT = """
+Generative AI, create a photorealistic, product photography image of a cosmetic lipstick product named {name} with the RGB color {color} as the main color,
+flat lighting, and a landscape, style, and subject that reflects the lipstick name.
 """

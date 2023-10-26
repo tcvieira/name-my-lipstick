@@ -1,18 +1,15 @@
 import streamlit as st
-from PIL import Image
-import pandas as pd
 from streamlit_extras.badges import badge
 from streamlit_extras.colored_header import colored_header
 from streamlit_extras.tags import tagger_component
-from PIL import Image
-from colors import topk_similar_colors, rgb2hex, hex2rgb, color_cells, NAMES_ORIGINAL
-from lipstick import generate_name
+from colors import topk_similar_colors, rgb2hex, hex2rgb, NAMES_ORIGINAL
+from lipstick import generate_name, generate_ad_image
 
 st.session_state['openai_api_key'] = ''
 if 'OPENAI_API_KEY' in st.secrets:
     st.session_state['openai_api_key'] = st.secrets['OPENAI_API_KEY']
 
-#color_image = Image.open('img/colors.png')
+st.session_state['generated_names'] = []
 
 def main():
 
@@ -22,6 +19,16 @@ def main():
 	page_title='Name My Lipstick',  # String or None. Strings get appended with '• Streamlit'.
 	page_icon='💄',  # String, anything supported by st.image, or None.
     )
+
+    js = '''
+    <script>
+        var body = window.parent.document.querySelector(".main");
+        console.log(body);
+        body.scrollTop = 0;
+    </script>
+    '''
+
+    st.components.v1.html(js)
 
     # LAYOUT
     hide_menu_style = '''
@@ -53,21 +60,14 @@ def main():
     )
     tagger_component('', ['llm','openai', 'langchain', 'prompt engineering', 'style transfer'], color_name=['red', 'red', 'red', 'red', 'red'])
 
-    #badge(type='streamlit', url='https://plost.streamlitapp.com')
     badge(type='github', name='tcvieira/name-my-lipstick')
-
-    # with st.expander('show colors from 2018 catalog'):
-    #     st.image(color_image, caption='source: https://pinterest.com/pin/437623288787889666/')
-
-    # with st.expander('show generated cleaned dataframe'):
-    #     df = pd.read_csv('../dataset/data_cleaned.csv')
-    #     st.write(df.style.applymap(color_cells, subset=["color"]))
 
     st.markdown('---')
 
-    st.color_picker(label='Choose a color for your lipstick', value='#ff4b4b', key='color')
+    st.color_picker(label='Choose a color for your lipstick', value='#9C00FF', key='color')
 
     if st.button(label='Generate', type='primary'):
+        st.session_state['generated_names'] = []
         similar_colors_rgb = topk_similar_colors(hex2rgb(st.session_state['color']), k=5)
         'Top 5 Most Similar Colors using [CIElab](https://en.wikipedia.org/wiki/CIELAB_color_space) color space:'
         cols = st.columns(5)
@@ -79,6 +79,18 @@ def main():
                 f'{NAMES_ORIGINAL[idx]}\n{color}'
             ncol += 1
         generate_name(similar_colors_rgb)
+        for item in st.session_state['generated_names']:
+            st.header(item['name'].replace('<name>',''), divider='rainbow')
+            st.caption(f"{item['prompt']}")
+            st.button(
+                label="Generate Ad",
+                type="primary",
+                key=f"generate_ad_{item['prompt']}_{item['color']}",
+                on_click=generate_ad_image,
+                args=[item['name'].replace('<name>','').upper(), hex2rgb(item['color'])],
+            )
+                # img, description = generate_ad_image(item['name'].replace('<name>',''), hex2rgb(item['color']))
+                # st.image(img, caption=f'Based on the generated prompt: {description}')
 
 
 if __name__ == '__main__':
