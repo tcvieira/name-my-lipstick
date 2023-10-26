@@ -49,15 +49,13 @@ def generate_ad_image(name: str, color_rgb: str):
 
 def generate_name(similar_colors_rgb: dict):
     color = st.session_state['color']
-    temperature = st.session_state['temperature']
-    openai_api_key = st.session_state['openai_api_key']
 
     with st.status("Calling OpenAI API...", expanded=True) as status:
         for prompt_name in PROMPTS.keys():
             llm = OpenAI(model_name="text-davinci-003",
-                        temperature=temperature,
+                        temperature=st.session_state['temperature'],
                         max_tokens=50,
-                        openai_api_key=openai_api_key)
+                        openai_api_key=st.session_state['openai_api_key'])
 
             prompt_template = PromptTemplate.from_template(PROMPTS[prompt_name])
             if prompt_name == 'few-shot':
