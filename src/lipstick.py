@@ -15,12 +15,12 @@ if 'OPENAI_API_KEY' in st.secrets:
 
 PROMPTS = {'zero-shot': ZERO_SHOT_PROMPT_TEMPLATE, 'few-shot': FEW_SHOT_PROMPT_TEMPLATE, 'many-shot': MANY_SHOT_PROMPT_TEMPLATE}
 
-def generate_ad_image(name: str, color_rgb: str):
+def generate_ad_image(name: str, color_rgb: str, openai_key: str, temperature: int):
     with st.status("Calling OpenAI API...", expanded=True) as status:
         llm = OpenAI(model_name="text-davinci-003",
-                    temperature=st.session_state['temperature'],
+                    temperature=temperature,
                     max_tokens=50,
-                    openai_api_key=st.session_state['openai_api_key'])
+                    openai_api_key=openai_key)
 
         # description_template = PromptTemplate.from_template(IMAGE_DESCRIPTION_PROMPT)
         # description_prompt = description_template.format(color=color_rgb, name=name)
@@ -40,7 +40,7 @@ def generate_ad_image(name: str, color_rgb: str):
 
         status.update(label='Generating image...', expanded=True)
         chain = LLMChain(llm=llm, prompt=prompt)
-        image_url = DallEAPIWrapper().run(chain.run(description_prompt), openai_api_key=st.session_state['openai_api_key'])
+        image_url = DallEAPIWrapper().run(chain.run(description_prompt), openai_api_key=openai_key)
         response = requests.get(image_url)
         status.update(label=f'{name}', state='complete', expanded=True)
         img = Image.open(BytesIO(response.content))

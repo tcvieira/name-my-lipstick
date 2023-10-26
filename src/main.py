@@ -87,7 +87,7 @@ def main():
                 type="primary",
                 key=f"generate_ad_{item['prompt']}_{item['color']}",
                 on_click=generate_ad_image,
-                args=[item['name'].replace('<name>','').upper(), hex2rgb(item['color'])],
+                args=[item['name'].replace('<name>','').upper(), hex2rgb(item['color']), st.session_state['openai_api_key'], st.session_state['temperature']],
             )
                 # img, description = generate_ad_image(item['name'].replace('<name>',''), hex2rgb(item['color']))
                 # st.image(img, caption=f'Based on the generated prompt: {description}')
