@@ -35,7 +35,6 @@ def main():
 
     # SIDERBAR
     with st.sidebar:
-        #st.header('Famous Brand Lipstick Name Style Generator')
         st.session_state['openai_api_key'] = st.text_input('OpenAI API Key', type='password', key="api_key_openai")
         "[Get an OpenAI API key](https://platform.openai.com/account/api-keys)"
 
@@ -69,20 +68,20 @@ def main():
                 st.color_picker(label=f'similar {ncol + 1}', value=color, label_visibility="collapsed", disabled=True)
                 f'{NAMES_ORIGINAL[idx]}\n{color}'
             ncol += 1
-        if not st.session_state['openai_api_key']: st.error('No OpenAI API key provided', icon="🚨")
-        generate_name(similar_colors_rgb)
-        for item in st.session_state['generated_names']:
-            st.header(item['name'].replace('<name>',''), divider='rainbow')
-            st.caption(f"{item['prompt']}")
-            st.button(
-                label="Generate Ad Image",
-                type="primary",
-                key=f"generate_ad_{item['prompt']}_{item['color']}",
-                on_click=generate_ad_image,
-                args=[item['name'].replace('<name>','').upper(), hex2rgb(item['color']), st.session_state['openai_api_key'], st.session_state['temperature']],
-            )
-                # img, description = generate_ad_image(item['name'].replace('<name>',''), hex2rgb(item['color']))
-                # st.image(img, caption=f'Based on the generated prompt: {description}')
+        if not st.session_state['openai_api_key']:
+            st.error('No OpenAI API key provided', icon="🚨")
+        else:
+            generate_name(similar_colors_rgb)
+            for item in st.session_state['generated_names']:
+                st.header(item['name'].replace('<name>',''), divider='rainbow')
+                st.caption(f"{item['prompt']}")
+                st.button(
+                    label="Generate Ad Image",
+                    type="primary",
+                    key=f"generate_ad_{item['prompt']}_{item['color']}",
+                    on_click=generate_ad_image,
+                    args=[item['name'].replace('<name>','').upper(), hex2rgb(item['color']), st.session_state['openai_api_key'], st.session_state['temperature']],
+                )
 
 
 if __name__ == '__main__':
