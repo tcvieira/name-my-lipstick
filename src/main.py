@@ -5,7 +5,6 @@ from streamlit_extras.tags import tagger_component
 from colors import topk_similar_colors, rgb2hex, hex2rgb, NAMES_ORIGINAL
 from lipstick import generate_name, generate_ad_image
 
-st.session_state['openai_api_key'] = ''
 if 'OPENAI_API_KEY' in st.secrets:
     st.session_state['openai_api_key'] = st.secrets['OPENAI_API_KEY']
 
@@ -55,6 +54,8 @@ def main():
     st.markdown('---')
 
     st.color_picker(label='Choose a color for your lipstick', value='#9C00FF', key='color')
+
+    print(st.session_state['openai_api_key'])
 
     if st.button(label='Generate', type='primary'):
         st.session_state['generated_names'] = []
