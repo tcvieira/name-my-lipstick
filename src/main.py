@@ -7,7 +7,7 @@ from lipstick import generate_name, generate_ad_image
 
 st.session_state['openai_api_key'] = ''
 if 'OPENAI_API_KEY' in st.secrets:
-    st.session_state['openai_api_key'] = st.secrets['OPENAI_API_KEY']
+    st.session_state['o0penai_api_key'] = st.secrets['OPENAI_API_KEY']
 
 st.session_state['generated_names'] = []
 
@@ -19,16 +19,6 @@ def main():
 	page_title='Name My Lipstick',  # String or None. Strings get appended with '• Streamlit'.
 	page_icon='💄',  # String, anything supported by st.image, or None.
     )
-
-    js = '''
-    <script>
-        var body = window.parent.document.querySelector(".main");
-        console.log(body);
-        body.scrollTop = 0;
-    </script>
-    '''
-
-    st.components.v1.html(js)
 
     # LAYOUT
     hide_menu_style = '''

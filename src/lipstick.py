@@ -8,6 +8,7 @@ import requests
 from io import BytesIO
 from colors import hex2rgb, NAMES_ORIGINAL
 from prompts import ZERO_SHOT_PROMPT_TEMPLATE, FEW_SHOT_PROMPT_TEMPLATE, MANY_SHOT_PROMPT_TEMPLATE, IMAGE_AD_PROMPT, IMAGE_DESCRIPTION_PROMPT
+from utils import scroll_to_top
 
 st.session_state['openai_api_key'] = ''
 if 'OPENAI_API_KEY' in st.secrets:
@@ -16,6 +17,7 @@ if 'OPENAI_API_KEY' in st.secrets:
 PROMPTS = {'zero-shot': ZERO_SHOT_PROMPT_TEMPLATE, 'few-shot': FEW_SHOT_PROMPT_TEMPLATE, 'many-shot': MANY_SHOT_PROMPT_TEMPLATE}
 
 def generate_ad_image(name: str, color_rgb: str, openai_key: str, temperature: int):
+    st.components.v1.html(scroll_to_top)
     with st.status("Calling OpenAI API...", expanded=True) as status:
         llm = OpenAI(model_name="text-davinci-003",
                     temperature=temperature,
