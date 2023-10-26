@@ -20,9 +20,9 @@ output only the new name between the <name> tag without the tag or any punctuati
 """
 
 MANY_SHOT_PROMPT_TEMPLATE = """
-As a head of MAC cosmetic advertisement department and marketing expert,
+As a head of MAC cosmetic advertisement department and marketing expert
 Create only one lipstick name that is based on the pairs of RGB tuples color and lipstick name delimited by
-<hex> and <name> tags below:
+<hex> and <name> tags below do not repeat any name from the examples and the output should only contain the name inside the <name> tag
 
 <rgb>(173, 94, 89)<rgb>, <name>Twig Sunset Rose<name>
 <rgb>(236, 94, 58)<rgb>, <name>Neon Orange<name>
@@ -179,9 +179,6 @@ Create only one lipstick name that is based on the pairs of RGB tuples color and
 <rgb>(105, 36, 31)<rgb>, <name>Studded Kiss , Dionysus<name>
 <rgb>(204, 130, 95)<rgb>, <name>Rock<name>
 <rgb>{color}<rgb>,
-
-do not repeat any name from the examples
-extract the name inside the <name> tag as output
 """
 
 IMAGE_DESCRIPTION_PROMPT = """

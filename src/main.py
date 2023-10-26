@@ -38,6 +38,10 @@ def main():
         st.session_state['openai_api_key'] = st.text_input('OpenAI API Key', type='password', key="api_key_openai")
         "[Get an OpenAI API key](https://platform.openai.com/account/api-keys)"
 
+        st.session_state['model'] = st.selectbox(
+            'OpenAI model',
+            ('text-davinci-003', 'gpt-3.5-turbo', 'gpt-3.5-turbo-instruct', 'gpt-3.5-turbo-16k'))
+
         st.slider('Temperature', key='temperature', min_value=0.0, max_value=1.0, step=0.1, value=0.5)
 
     # MAIN CONTENT
@@ -53,8 +57,6 @@ def main():
     st.markdown('---')
 
     st.color_picker(label='Choose a color for your lipstick', value='#9C00FF', key='color')
-
-    print(st.session_state['openai_api_key'])
 
     if st.button(label='Generate', type='primary'):
         st.session_state['generated_names'] = []

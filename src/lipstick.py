@@ -15,7 +15,7 @@ PROMPTS = {'zero-shot': ZERO_SHOT_PROMPT_TEMPLATE, 'few-shot': FEW_SHOT_PROMPT_T
 def generate_ad_image(name: str, color_rgb: str, openai_key: str, temperature: int):
     st.components.v1.html(scroll_to_top)
     with st.status("Calling OpenAI API...", expanded=True) as status:
-        llm = OpenAI(model_name="text-davinci-003",
+        llm = OpenAI(model_name=st.session_state['model'],
                     temperature=temperature,
                     max_tokens=50,
                     openai_api_key=openai_key)
@@ -50,7 +50,7 @@ def generate_name(similar_colors_rgb: dict):
 
     with st.status("Calling OpenAI API...", expanded=True) as status:
         for prompt_name in PROMPTS.keys():
-            llm = OpenAI(model_name="text-davinci-003",
+            llm = OpenAI(model_name=st.session_state['model'],
                         temperature=st.session_state['temperature'],
                         max_tokens=50,
                         openai_api_key=st.session_state['openai_api_key'])
