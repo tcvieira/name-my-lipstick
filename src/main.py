@@ -68,7 +68,7 @@ def main():
                 st.color_picker(label=f'similar {ncol + 1}', value=color, label_visibility="collapsed", disabled=True)
                 f'{NAMES_ORIGINAL[idx]}\n{color}'
             ncol += 1
-        if not st.session_state['openai_api_key'] st.error('No OpenAI API key provided', icon="🚨")
+        if not st.session_state['openai_api_key']: st.error('No OpenAI API key provided', icon="🚨")
         generate_name(similar_colors_rgb)
         for item in st.session_state['generated_names']:
             st.header(item['name'].replace('<name>',''), divider='rainbow')
