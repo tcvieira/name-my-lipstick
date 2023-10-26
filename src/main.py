@@ -7,7 +7,7 @@ from lipstick import generate_name, generate_ad_image
 
 st.session_state['openai_api_key'] = ''
 if 'OPENAI_API_KEY' in st.secrets:
-    st.session_state['o0penai_api_key'] = st.secrets['OPENAI_API_KEY']
+    st.session_state['openai_api_key'] = st.secrets['OPENAI_API_KEY']
 
 st.session_state['generated_names'] = []
 
@@ -68,12 +68,13 @@ def main():
                 st.color_picker(label=f'similar {ncol + 1}', value=color, label_visibility="collapsed", disabled=True)
                 f'{NAMES_ORIGINAL[idx]}\n{color}'
             ncol += 1
+        if not st.session_state['openai_api_key'] st.error('No OpenAI API key provided', icon="🚨")
         generate_name(similar_colors_rgb)
         for item in st.session_state['generated_names']:
             st.header(item['name'].replace('<name>',''), divider='rainbow')
             st.caption(f"{item['prompt']}")
             st.button(
-                label="Generate Ad",
+                label="Generate Ad Image",
                 type="primary",
                 key=f"generate_ad_{item['prompt']}_{item['color']}",
                 on_click=generate_ad_image,
