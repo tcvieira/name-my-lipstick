@@ -1,0 +1,14 @@
+[theme]
+base="light"
+primaryColor="#ff4b4b"
+textColor="#173d4f"
+
+[server]
+runOnSave=true
+port=8502
+headless=true
+
+[browser]
+gatherUsageStats=false
+serverAddress = "127.0.0.1"
+serverPort = 8502
