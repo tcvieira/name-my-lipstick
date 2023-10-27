@@ -186,13 +186,14 @@ Your task is to create a prompt for a generative ai to create an image for a lip
 
 The generated prompt should follow the below rules to help you build this prompt:
 
-the image should not contain any writing on it.
-the image background color needs to be on contrast and tone with the rgb color {color}
-the look and feel of the image should match with the lipstick name {name}
-the image should have a "Flat lighting" mood
-the prompt should define a landscape, style, color and subject based on the RGB color and lipstick name provided
-the prompt should use the words Photorealistic, Product photography, Cosmetic Product
-The prompt should have a maximum of 300 characters
+prompt must containt that the main object on the image is the lipstick
+image should not contain any writing on it
+image background color needs to be on contrast and tone with the rgb color {color}
+look and feel of the image should match with the lipstick name {name}
+image should have a "Flat lighting" mood
+prompt should define a landscape, style, color and subject based on the RGB color and lipstick name provided
+prompt should use the words Photorealistic, Product photography, Cosmetic Product
+prompt should have a maximum of 300 characters
 """
 
 IMAGE_AD_PROMPT = """
