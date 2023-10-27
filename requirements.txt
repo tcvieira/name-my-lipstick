@@ -9,4 +9,3 @@ colorama==0.4.6
 pytesseract==0.3.10
 opencv-python==4.5.5.64
 easyocr==1.6.2
-streamlit-feedback==0.1.2
