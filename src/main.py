@@ -1,3 +1,4 @@
+import openai
 import streamlit as st
 from streamlit_extras.badges import badge
 from streamlit_extras.colored_header import colored_header
@@ -73,17 +74,25 @@ def main():
         if not st.session_state['openai_api_key']:
             st.error('No OpenAI API key provided', icon="🚨")
         else:
-            generate_name(similar_colors_rgb)
-            for item in st.session_state['generated_names']:
-                st.header(item['name'].replace('<name>',''), divider='rainbow')
-                st.caption(f"{item['prompt']}")
-                st.button(
-                    label="Generate Ad Image",
-                    type="primary",
-                    key=f"generate_ad_{item['prompt']}_{item['color']}",
-                    on_click=generate_ad_image,
-                    args=[item['name'].replace('<name>','').upper(), hex2rgb(item['color']), st.session_state['openai_api_key'], st.session_state['temperature']],
-                )
+            try:
+                generate_name(similar_colors_rgb)
+                for item in st.session_state['generated_names']:
+                    st.header(item['name'].replace('<name>',''), divider='rainbow')
+                    st.caption(f"{item['prompt']}")
+                    st.button(
+                        label="Generate Ad Image",
+                        type="primary",
+                        key=f"generate_ad_{item['prompt']}_{item['color']}",
+                        on_click=generate_ad_image,
+                        args=[item['name'].replace('<name>','').upper(), hex2rgb(item['color']), st.session_state['openai_api_key'], st.session_state['temperature']],
+                    )
+            except openai.error.RateLimitError as e:
+                retry_time = e.retry_after if hasattr(e, 'retry_after') else 60
+                print()
+                st.error(f'Rate limit exceeded. Retry after {retry_time} seconds...', icon="⌛️")
+            except Exception as e:
+                print(e)
+                st.error(f'Sorry, something went wrong...', icon="😢")
 
 
 if __name__ == '__main__':
