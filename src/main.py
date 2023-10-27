@@ -10,6 +10,7 @@ if 'OPENAI_API_KEY' in st.secrets:
     st.session_state['openai_api_key'] = st.secrets['OPENAI_API_KEY']
 
 st.session_state['generated_names'] = []
+st.session_state['llm-image-prompt'] = False
 
 def main():
 
@@ -41,7 +42,9 @@ def main():
 
         st.session_state['model'] = st.selectbox(
             'OpenAI model',
-            ('text-davinci-003', 'gpt-3.5-turbo', 'gpt-3.5-turbo-instruct', 'gpt-3.5-turbo-16k'))
+            ('text-davinci-003', 'gpt-3.5-turbo', 'gpt-4', 'gpt-3.5-turbo-instruct', 'gpt-3.5-turbo-16k'))
+
+        st.session_state['llm-image-prompt'] = st.toggle('Generate image prompt with LLM')
 
         st.slider('Temperature', key='temperature', min_value=0.0, max_value=1.0, step=0.1, value=0.5)
 

@@ -17,19 +17,20 @@ def generate_ad_image(name: str, color_rgb: str, openai_key: str, temperature: i
     with st.status("Calling OpenAI API...", expanded=True) as status:
         llm = OpenAI(model_name=st.session_state['model'],
                     temperature=temperature,
-                    max_tokens=50,
+                    max_tokens=300,
                     openai_api_key=openai_key)
 
-        # description_template = PromptTemplate.from_template(IMAGE_DESCRIPTION_PROMPT)
-        # description_prompt = description_template.format(color=color_rgb, name=name)
-
-        # status.update(label='Generating image description...', expanded=True)
-        # image_description = llm(description_prompt)
-        # print(image_description)
-        # print()
-
         description_template = PromptTemplate.from_template(IMAGE_AD_PROMPT)
-        description_prompt = description_template.format(color=color_rgb, name=name)
+        image_description = description_template.format(color=color_rgb, name=name)
+
+        if  st.session_state['llm-image-prompt']:
+            description_template = PromptTemplate.from_template(IMAGE_DESCRIPTION_PROMPT)
+            description_prompt = description_template.format(color=color_rgb, name=name)
+
+            status.update(label='Generating image description...', expanded=True)
+            image_description = llm(description_prompt)
+            print(image_description)
+
 
         prompt = PromptTemplate(
             input_variables=["image_desc"],
@@ -38,11 +39,11 @@ def generate_ad_image(name: str, color_rgb: str, openai_key: str, temperature: i
 
         status.update(label='Generating image...', expanded=True)
         chain = LLMChain(llm=llm, prompt=prompt)
-        image_url = DallEAPIWrapper(openai_api_key=openai_key).run(chain.run(description_prompt))
+        image_url = DallEAPIWrapper(openai_api_key=openai_key).run(chain.run(image_description))
         response = requests.get(image_url)
         status.update(label=f'{name}', state='complete', expanded=True)
         img = Image.open(BytesIO(response.content))
-        st.image(img, caption=f'Based on the generated prompt: {description_prompt}')
+        st.image(img, caption=f'Image Prompt: {image_description}')
         #return img, image_description
 
 def generate_name(similar_colors_rgb: dict):
