@@ -8,24 +8,23 @@ The dataset was built from the image below using image and ocr processing
 
 More information can be found on this [post]() **TODO**
 
-Try on **TODO**
+Try on https://namemylipstick.streamlit.app/
 
 ## Features
 
 - generate a lipstick name using zero-shot, few-shot and many-shot prompt approaches based on the select color using GPT-3.5;
 - generate an ad image for the generated lipstick name using DALLE2.
 
-## Screenshots
+## Architecture
 
-- **TODO**
+![](arch.jpg)
 
 ## Work
 
-- extracted data from an image with the 2018 lipstick name and color of a famous cosmetic brand;
-- preprocessed the collected data to feed few-shot and many-shot prompts;
-- implemented a similirity color search based on CIELab to feed the few-shot prompt;
-- created a UI using Streamlit.
-
-## Project
-
-- **TODO**
+[x] extracted data from an image with the 2018 lipstick name and color of a famous cosmetic brand;
+[x] preprocessed the collected data to feed few-shot and many-shot prompts;
+[x] implemented a similirity color search based on CIELab to feed the few-shot prompt;
+[x] created a UI using Streamlit.
+[x] prompts
+[x] api calls
+[x] generate image from name + rgb color
