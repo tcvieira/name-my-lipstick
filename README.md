@@ -21,10 +21,10 @@ Try on https://namemylipstick.streamlit.app/
 
 ## Work
 
-[x] extracted data from an image with the 2018 lipstick name and color of a famous cosmetic brand;
-[x] preprocessed the collected data to feed few-shot and many-shot prompts;
-[x] implemented a similirity color search based on CIELab to feed the few-shot prompt;
-[x] created a UI using Streamlit.
-[x] prompts
-[x] api calls
-[x] generate image from name + rgb color
+- [x] extracted data from an image with the 2018 lipstick name and color of a famous cosmetic brand;
+- [x] preprocessed the collected data to feed few-shot and many-shot prompts;
+- [x] implemented a similirity color search based on CIELab to feed the few-shot prompt;
+- [x] created a UI using Streamlit.
+- [x] prompts
+- [x] api calls
+- [x] generate image from name + rgb color
