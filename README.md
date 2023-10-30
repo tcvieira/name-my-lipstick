@@ -6,7 +6,7 @@ The goal is to style transfer lipstick naming of a famous cosmetic brand based o
 
 The dataset was built from the image below using image and ocr processing
 
-More information can be found on this [💄 Name-My-Lipstick: Where AI Crafts Stunning Names and Fabulous Ad Images](https://medium.com/@tcvieira/name-my-lipstick-where-ai-crafts-stunning-names-and-fabulous-ad-images-699298fd2647)
+More information can be found on the blog post [💄 Name-My-Lipstick: Where AI Crafts Stunning Names and Fabulous Ad Images](https://medium.com/@tcvieira/name-my-lipstick-where-ai-crafts-stunning-names-and-fabulous-ad-images-699298fd2647)
 
 Try on https://namemylipstick.streamlit.app/
 
