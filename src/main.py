@@ -58,6 +58,8 @@ def main():
 
     badge(type='github', name='tcvieira/name-my-lipstick')
 
+    'More information about the project on the blog post: [💄 Name-My-Lipstick: Where AI Crafts Stunning Names and Fabulous Ad Images](https://medium.com/@tcvieira/name-my-lipstick-where-ai-crafts-stunning-names-and-fabulous-ad-images-699298fd2647)'
+
     st.markdown('---')
 
     st.color_picker(label='Choose a color for your lipstick', value='#9C00FF', key='color')
