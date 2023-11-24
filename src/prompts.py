@@ -197,6 +197,6 @@ prompt should have a maximum of 300 characters
 """
 
 IMAGE_AD_PROMPT = """
-Generative AI, create a photorealistic, product photography image of a LIPSTICK named {name} with the RGB color {color} as the main color,
-flat lighting, and a landscape, style, subject that reflects the LIPSTICK name and the image should not contain any words or letters on it.
+Generative AI, create a photorealistic, product photography image of a LIPSTICK named {name} with the color {color} in RGB format as the LIPSTICK color,
+flat lighting, and a landscape, style, subject that reflects the LIPSTICK name and color.
 """

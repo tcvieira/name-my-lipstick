@@ -42,7 +42,11 @@ def main():
 
         st.session_state['model'] = st.selectbox(
             'OpenAI model',
-            ('text-davinci-003', 'gpt-3.5-turbo', 'gpt-4', 'gpt-3.5-turbo-instruct', 'gpt-3.5-turbo-16k'))
+            ('gpt-3.5-turbo', 'gpt-4-1106-preview', 'gpt-4', 'gpt-3.5-turbo-1106', 'gpt-3.5-turbo-16k'))
+
+        st.session_state['image-model'] = st.selectbox(
+            'OpenAI Image model',
+            ('dall-e-3', 'dall-e-2'))
 
         st.session_state['llm-image-prompt'] = st.toggle('Generate image prompt with LLM')
 
@@ -89,9 +93,9 @@ def main():
                         type="primary",
                         key=f"generate_ad_{item['prompt']}_{item['color']}",
                         on_click=generate_ad_image,
-                        args=[item['name'].replace('<name>','').upper(), hex2rgb(item['color']), st.session_state['openai_api_key'], st.session_state['temperature']],
+                        args=[item['name'].replace('<name>','').upper(), hex2rgb(item['color'])],
                     )
-            except openai.error.RateLimitError as e:
+            except openai.RateLimitError  as e:
                 retry_time = e.retry_after if hasattr(e, 'retry_after') else 60
                 print()
                 st.error(f'Rate limit exceeded. Retry after {retry_time} seconds...', icon="⌛️")
