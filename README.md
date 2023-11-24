@@ -12,8 +12,8 @@ Try on https://namemylipstick.streamlit.app/
 
 ## Features
 
-- generate a lipstick name using zero-shot, few-shot and many-shot prompt approaches based on the select color using GPT-3.5;
-- generate an ad image for the generated lipstick name using DALLE2.
+- generate a lipstick name using zero-shot, few-shot and many-shot prompt approaches based on the select color using GPT-3.5 and other models;
+- generate an ad image for the generated lipstick name using DALLE2 and DALLE3.
 
 ## Architecture
 
