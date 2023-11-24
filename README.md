@@ -28,3 +28,5 @@ Try on https://namemylipstick.streamlit.app/
 - [x] prompts
 - [x] api calls
 - [x] generate image from name + rgb color
+- [x] add dalle3
+- [x] remove langchain dependency to better follow openai updates

@@ -1,6 +1,5 @@
 streamlit==1.27.0
-openai==0.28.0
-langchain==0.0.300
+openai==1.3.5
 pillow==9.1.1
 streamlit-extras==0.3.2
 colorspacious==1.1.2
